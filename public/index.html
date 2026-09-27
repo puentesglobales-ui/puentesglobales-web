@@ -3,337 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PuentesGlobales | Tu Futuro Profesional en Europa</title>
-    <meta name="description" content="Miles de oportunidades laborales en Europa, actualizadas diariamente desde las mejores fuentes. Consulta a ALEX IO para ver cómo te podemos ayudar a migrar a Europa.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>PuentesGlobales | Tu Tutor de Idiomas IA & Empleo en Europa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary: #1a1a1a;
-            --accent: #2563eb;
-            --bg: #ffffff;
-            --gray: #f9fafb;
+            --bg-main: #030712;
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --primary-accent: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --emerald-accent: #10b981;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-        body { background: var(--bg); color: var(--primary); overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ambient Glow Orbs */
+        .glow-orb-1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-orb-2 {
+            position: absolute;
+            top: 400px;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
         /* Navbar */
         nav {
-            padding: 1.5rem 5%;
+            padding: 1.25rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: absolute;
-            width: 100%;
+            position: sticky;
+            top: 0;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 100;
         }
-        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; color: white; }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         /* Hero */
         .hero {
-            height: 90vh;
+            padding: 5rem 5% 4rem;
             display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.1)), 
-                        url('assets/img/hero.png');
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 1.25rem;
+            letter-spacing: -1.5px;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Search Container */
+        .search-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-card);
+            padding: 1.5rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-select, .search-input {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: white;
+            padding: 0.85rem 1.25rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-select:focus, .search-input:focus {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-search {
+            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-hover) 100%);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 14px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-search:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Cards & Grids */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Sector Cards */
+        .sector-img {
+            height: 200px;
+            border-radius: 14px;
             background-size: cover;
             background-position: center;
+            margin-bottom: 1.25rem;
         }
-        .hero-content { max-width: 600px; }
-        .hero h1 { font-size: 4rem; line-height: 1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -2px; }
-        .hero p { font-size: 1.25rem; color: #4b5563; margin-bottom: 2.5rem; font-weight: 300; }
 
-        /* Search Box */
-        .search-container {
-            background: white;
-            padding: 1rem;
-            border-radius: 100px;
-            display: flex;
-            gap: 1rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-        }
-        .search-container input {
-            border: none;
-            padding: 1rem 1.5rem;
-            flex: 1;
-            font-size: 1rem;
-            outline: none;
-        }
-        .btn-search {
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 100px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-search:hover { background: #1d4ed8; }
-
-        /* Sectors */
-        .sectors { padding: 8rem 5%; background: var(--gray); }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .sector-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: 0.4s;
-            cursor: pointer;
-            border: 1px solid #eee;
-        }
-        .sector-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
-        .sector-img { height: 260px; background-size: cover; background-position: center; }
-        .sector-info { padding: 2rem; }
-        .sector-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .sector-info p { color: #6b7280; font-size: 0.9rem; }
-
-        /* Mobile Optimization */
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; margin-bottom: 1rem; }
-            .hero p { font-size: 1rem; margin-bottom: 1.5rem; }
-            .hero { padding: 0 1rem; padding-top: 6rem; padding-bottom: 2rem; }
-            .search-container { 
-                padding: 1rem; 
-                border-radius: 20px;
-                gap: 0.75rem;
-            }
-            .search-container, 
-            .search-container > div { 
-                flex-direction: column !important; 
-                gap: 0.75rem !important;
-            }
-            .search-container select,
-            .search-container input,
-            .search-container button {
-                width: 100% !important;
-                margin: 0 !important;
-                flex: none !important;
-                box-sizing: border-box !important;
-            }
-            .search-container input {
-                border: 1px solid #eee !important;
-                border-radius: 12px !important;
-                padding: 0.75rem !important;
-            }
-            .search-container div[style*="background: #f9fafb"] {
-                background: transparent !important;
-                padding: 0 !important;
-                flex-direction: column !important;
-            }
-            .btn-search {
-                padding: 0.75rem !important;
-                font-size: 1rem !important;
-            }
-            .grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            nav { padding: 1rem 5%; }
-            .logo { font-size: 1.25rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero { padding-top: 3rem; }
+            .search-container div { flex-direction: column !important; }
         }
 
-        footer { padding: 4rem 5%; text-align: center; border-top: 1px solid #eee; }
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: #020617;
+        }
     </style>
 </head>
 <body>
 
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+
+    <!-- Navigation -->
     <nav>
         <div class="logo">PuentesGlobales.</div>
-        <div style="display:flex; gap:1.5rem; align-items:center;">
-            <a href="home/" style="text-decoration:none; color:inherit; font-weight:600; opacity:0.9; transition:0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">🎓 Tutor IA Idiomas</a>
-            <a href="admin.html" style="text-decoration:none; color:inherit; font-weight:600; opacity:0.8; transition:0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">⚙️ Admin</a>
+        <div style="display:flex; gap:1.25rem; align-items:center;">
+            <a href="home/" style="text-decoration:none; color:#a5b4fc; font-weight:700; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); padding:0.45rem 1rem; border-radius:100px; font-size:0.9rem; transition:0.2s;">🎓 Tutor IA Idiomas</a>
+            <a href="admin.html" style="text-decoration:none; color:var(--text-muted); font-weight:600; font-size:0.9rem; transition:0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">⚙️ Admin</a>
             <div id="nav-user-area">
-                <a href="#" onclick="openAuthModal()" style="text-decoration:none; color:inherit; font-weight:600; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
+                <a href="#" onclick="openAuthModal(event)" style="text-decoration:none; color:white; font-weight:600; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:0.45rem 1rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Tu puente al empleo europeo.</h1>
-            <p>Miles de oportunidades laborales en Europa, actualizadas diariamente desde las mejores fuentes.</p>
-            
-            <div style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.2); color:#4338ca; font-weight:600; font-size:0.9rem; padding:0.6rem 1.25rem; border-radius:100px; margin-bottom:1.75rem;">
+            <!-- alexio.online Badge -->
+            <div style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); color:#a5b4fc; font-weight:600; font-size:0.875rem; padding:0.5rem 1.25rem; border-radius:100px; margin-bottom:1.5rem;">
                 <span>🤖</span>
-                <span>Este sitio está conectado a <a href="https://alexio.online" target="_blank" style="color:#4f46e5; text-decoration:underline; font-weight:700;">alexio.online</a> para darte mejor información en tiempo real.</span>
+                <span>Conectado a <a href="https://alexio.online" target="_blank" style="color:#ffffff; text-decoration:underline; font-weight:700;">alexio.online</a> para tu preparación y empleos en tiempo real</span>
             </div>
+
+            <h1>Tu Tutor de Idiomas IA & Empleo en Europa</h1>
+            <p>Domina el idioma que necesitas y accede a vacantes internacionales con patrocinio de visado. Preparación inteligente para profesionales de Latinoamérica.</p>
             
-            <form action="#" method="GET" class="search-container" style="flex-direction: column; border-radius: 24px; padding: 1.5rem; gap: 1rem;">
-                <!-- Filtros -->
-                <div style="display: flex; gap: 1rem; width: 100%;">
-                    <select name="country" style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; font-family: inherit; background: white;">
+            <form action="#" method="GET" class="search-container" style="display:flex; flex-direction:column; gap:1rem;">
+                <div style="display:flex; gap:1rem; width:100%;">
+                    <select name="country" class="search-select" style="flex:1;">
                         <option value="">🌍 Todos los países</option>
-                        <option value="España">🇪🇸 España</option>
                         <option value="Alemania">🇩🇪 Alemania</option>
-                        <option value="Francia">🇫🇷 Francia</option>
-                        <option value="Italia">🇮🇹 Italia</option>
+                        <option value="España">🇪🇸 España</option>
                         <option value="Reino Unido">🇬🇧 Reino Unido</option>
-                        <option value="Irlanda">🇮🇪 Irlanda</option>
-                        <option value="Dinamarca">🇩🇰 Dinamarca</option>
-                        <option value="Noruega">🇳🇴 Noruega</option>
-                        <option value="Finlandia">🇫🇮 Finlandia</option>
-                        <option value="Remoto">💻 Remoto</option>
+                        <option value="Holanda">🇳🇱 Holanda</option>
+                        <option value="Francia">🇫🇷 Francia</option>
+                        <option value="Remoto">🌐 100% Remoto</option>
                     </select>
-                    
-                    <select name="profession" style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; font-family: inherit; background: white;">
+
+                    <select name="profession" class="search-select" style="flex:1;">
                         <option value="">💼 Todas las profesiones</option>
                         <option value="IT">💻 Tecnología / IT</option>
-                        <option value="Salud">🏥 Salud</option>
+                        <option value="Salud">🏥 Salud / Medicina</option>
                         <option value="Ingeniería">⚙️ Ingeniería</option>
-                        <option value="Construcción">🏗️ Construcción</option>
-                        <option value="Hostelería">🍽️ Hostelería</option>
-                        <option value="Educación">📚 Educación</option>
-                        <option value="Finanzas">💰 Finanzas</option>
-                        <option value="Marketing">📢 Marketing</option>
-                        <option value="Ventas">🤝 Ventas</option>
-                        <option value="Logística">📦 Logística</option>
+                        <option value="Construcción">🏗️ Oficios Técnicos</option>
+                        <option value="Logística">🚚 Transporte / Logística</option>
+                        <option value="Finanzas">📊 Gestión y Admin</option>
                     </select>
                 </div>
-                
-                <!-- Búsqueda -->
-                <div style="display: flex; gap: 1rem; width: 100%; background: #f9fafb; padding: 0.5rem; border-radius: 100px;">
-                    <input type="text" name="q" placeholder="Busca por puesto, empresa o habilidad..." style="background: transparent; border: none;">
-                    <button type="submit" class="btn-search">Buscar Empleos</button>
+
+                <div style="display:flex; gap:1rem; width:100%;">
+                    <input type="text" name="q" class="search-input" placeholder="Busca por puesto, empresa o tecnología..." style="flex:1;">
+                    <button type="submit" class="btn-search">Buscar Oportunidades</button>
                 </div>
             </form>
         </div>
     </section>
 
-    <section class="sectors">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem; font-weight: 800">Especialidades</h2>
-        <div class="grid">
-            <!-- Médico -->
-            <div class="sector-card">
-                <div class="sector-img" style="background-image: url('assets/img/medical_clean_v3_1790543428443.png')"></div>
-                <div class="sector-info">
-                    <h3>Sector Salud</h3>
-                    <p>Oportunidades para médicos, enfermeros y especialistas de alto nivel.</p>
-                </div>
+    <!-- Módulo Tutor de Idiomas IA (Teaser Banner para /home) -->
+    <section style="padding: 0 5% 4rem; max-width: 1200px; margin: 0 auto; position:relative; z-index:1;">
+        <div style="background: linear-gradient(135deg, rgba(30, 27, 75, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 28px; padding: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);">
+            <div style="max-width: 650px;">
+                <span style="background: rgba(99, 102, 241, 0.25); color: #c7d2fe; font-weight: 700; font-size: 0.8rem; padding: 0.35rem 0.85rem; border-radius: 100px; text-transform: uppercase;">Módulo Especializado</span>
+                <h2 style="font-size: 2rem; font-weight: 800; margin-top: 0.75rem; margin-bottom: 0.75rem; color: white;">🎓 Entrena tu Idioma con nuestro Tutor IA</h2>
+                <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6;">Simula entrevistas de trabajo en Alemán, Inglés o Francés, practica tu vocabulario técnico y acelera tu llegada a Europa.</p>
             </div>
-
-            <!-- Ingeniero -->
-            <div class="sector-card">
-                <div class="sector-img" style="background-image: url('assets/img/tech_clean_v3_1790543441002.png')"></div>
-                <div class="sector-info">
-                    <h3>Ingeniería y Tech</h3>
-                    <p>Proyectos de infraestructura y desarrollo tecnológico en toda Europa.</p>
-                </div>
-            </div>
-
-            <!-- Operarios -->
-            <div class="sector-card">
-                <div class="sector-img" style="background-image: url('assets/img/technical_clean_v3_1790543455603.png')"></div>
-                <div class="sector-info">
-                    <h3>Oficios Técnicos</h3>
-                    <p>Electricistas, soldadores y personal cualificado para la industria moderna.</p>
-                </div>
-            </div>
-
-            <!-- Choferes -->
-            <div class="sector-card">
-                <div class="sector-img" style="background-image: url('assets/img/logistics_clean_v3_1790543468348.png')"></div>
-                <div class="sector-info">
-                    <h3>Transporte y Logística</h3>
-                    <p>La red de suministro más grande del mundo busca conductores expertos.</p>
-                </div>
-            </div>
-
-            <!-- Administración -->
-            <div class="sector-card">
-                <div class="sector-img" style="background-image: url('assets/img/admin_clean_v3_1790543481908.png')"></div>
-                <div class="sector-info">
-                    <h3>Gestión y Admin</h3>
-                    <p>Perfiles administrativos y de liderazgo para grandes corporaciones.</p>
-                </div>
+            <div>
+                <a href="home/" style="display: inline-block; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem; border-radius: 16px; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5); transition: transform 0.2s;">Ingresar al Tutor IA →</a>
             </div>
         </div>
     </section>
 
-    <!-- Live Jobs & Flags Section -->
-    <section id="ofertas-sec" style="padding: 4rem 5%; max-width: 1200px; margin: 0 auto;">
+    <!-- Sectores / Especialidades -->
+    <section style="padding: 4rem 5%; max-width: 1200px; margin: 0 auto; position:relative; z-index:1;">
+        <h2 style="font-size: 2.25rem; text-align: center; margin-bottom: 3rem; font-weight: 800;">Sectores de Alta Demanda</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+            
+            <div class="glass-card">
+                <div class="sector-img" style="background-image: url('assets/img/medical_clean_v3_1790543428443.png');"></div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Sector Salud</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Médicos, enfermeros y especialistas cualificados.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="sector-img" style="background-image: url('assets/img/tech_clean_v3_1790543441002.png');"></div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Ingeniería y Tech</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Desarrollo de software, cloud y sistemas.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="sector-img" style="background-image: url('assets/img/technical_clean_v3_1790543455603.png');"></div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Oficios Técnicos</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Electricistas, técnicos e industrias avanzadas.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="sector-img" style="background-image: url('assets/img/logistics_clean_v3_1790543468348.png');"></div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Transporte y Logística</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Conductores internacionales y operaciones.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="sector-img" style="background-image: url('assets/img/admin_clean_v3_1790543481908.png');"></div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Gestión y Admin</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Perfiles ejecutivos y administrativos.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Ofertas Dinámicas -->
+    <section id="ofertas-sec" style="padding: 4rem 5%; max-width: 1200px; margin: 0 auto; position:relative; z-index:1;">
         <div style="text-align: center; margin-bottom: 2.5rem;">
-            <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem;">Oportunidades Destacadas en Europa</h2>
-            <p style="color: #6b7280; font-size: 1.1rem;">Filtradas en tiempo real desde las mejores bolsas de empleo globales</p>
+            <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem;">Ofertas en Tiempo Real</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">Conectadas directamente con bolsas de empleo abiertas globales</p>
         </div>
 
         <!-- Banderas de Filtro Rápido -->
         <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;" id="flags-bar">
-            <button class="flag-btn active" onclick="filterByFlag('')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: #111827; color: white; font-weight: 600; cursor: pointer; transition: 0.2s;">🌟 Todas</button>
-            <button class="flag-btn" onclick="filterByFlag('Alemania')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: white; color: #374151; font-weight: 600; cursor: pointer; transition: 0.2s;">🇩🇪 Alemania</button>
-            <button class="flag-btn" onclick="filterByFlag('España')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: white; color: #374151; font-weight: 600; cursor: pointer; transition: 0.2s;">🇪🇸 España</button>
-            <button class="flag-btn" onclick="filterByFlag('Reino Unido')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: white; color: #374151; font-weight: 600; cursor: pointer; transition: 0.2s;">🇬🇧 Reino Unido</button>
-            <button class="flag-btn" onclick="filterByFlag('Holanda')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: white; color: #374151; font-weight: 600; cursor: pointer; transition: 0.2s;">🇳🇱 Holanda</button>
-            <button class="flag-btn" onclick="filterByFlag('Remoto')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid #e5e7eb; background: white; color: #374151; font-weight: 600; cursor: pointer; transition: 0.2s;">🌐 100% Remoto</button>
+            <button class="flag-btn active" onclick="filterByFlag('')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.2); background: var(--primary-accent); color: white; font-weight: 600; cursor: pointer; transition: 0.2s;">🌟 Todas</button>
+            <button class="flag-btn" onclick="filterByFlag('Alemania')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.8); color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;">🇩🇪 Alemania</button>
+            <button class="flag-btn" onclick="filterByFlag('España')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.8); color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;">🇪🇸 España</button>
+            <button class="flag-btn" onclick="filterByFlag('Reino Unido')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.8); color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;">🇬🇧 Reino Unido</button>
+            <button class="flag-btn" onclick="filterByFlag('Holanda')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.8); color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;">🇳🇱 Holanda</button>
+            <button class="flag-btn" onclick="filterByFlag('Remoto')" style="padding: 0.6rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.8); color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;">🌐 100% Remoto</button>
         </div>
 
-        <!-- Job Cards Container -->
         <div id="public-jobs-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
             <!-- Rendered by JS -->
         </div>
     </section>
 
     <!-- Guías Migratorias LATAM -> Europa -->
-    <section style="padding: 4rem 5%; background: #f9fafb; border-top: 1px solid #edf2f7; border-bottom: 1px solid #edf2f7;">
+    <section style="padding: 5rem 5%; background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); position:relative; z-index:1;">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 3rem;">
-                <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem; text-transform: uppercase;">Recursos LATAM</span>
+                <span style="background: rgba(99, 102, 241, 0.2); color: #c7d2fe; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem; text-transform: uppercase;">Recursos LATAM</span>
                 <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem;">Centro de Guías Migratorias</h2>
-                <p style="color: #6b7280; font-size: 1.05rem;">Información oficial y estructurada para profesionales de Latinoamérica</p>
+                <p style="color: var(--text-muted); font-size: 1.05rem;">Información oficial para dar el salto profesional</p>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
-                <!-- Guía 1 -->
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div style="font-size: 2rem; margin-bottom: 1rem;">🇩🇪</div>
                         <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Visa Chancenkarte (Alemania)</h3>
-                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Conoce el nuevo sistema de tarjeta de oportunidad basado en puntos para buscar empleo presencial en Alemania por 1 año.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Conoce el nuevo sistema de tarjeta de oportunidad por puntos para buscar empleo presencial en Alemania.</p>
                     </div>
-                    <button onclick="openGuideModal('chancenkarte')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                    <button onclick="openGuideModal('chancenkarte')" style="background:none; border:none; color: #818cf8; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
 
-                <!-- Guía 2 -->
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div style="font-size: 2rem; margin-bottom: 1rem;">🇪🇸</div>
-                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Ley de Nómadas Digitales (España)</h3>
-                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Requisitos para obtener la residencia de trabajo remoto en España con tipo impositivo reducido (Beckham Law).</p>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Ley de Nómadas (España)</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Requisitos para obtener la residencia de trabajo remoto en España con beneficios fiscales (Ley Beckham).</p>
                     </div>
-                    <button onclick="openGuideModal('nomada_espana')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                    <button onclick="openGuideModal('nomada_espana')" style="background:none; border:none; color: #818cf8; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
 
-                <!-- Guía 3 -->
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div style="font-size: 2rem; margin-bottom: 1rem;">📜</div>
                         <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Homologación de Títulos</h3>
-                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Paso a paso para hacer valer tus diplomas universitarios y certificaciones profesionales en la Unión Europea.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Paso a paso para hacer valer tus diplomas universitarios y técnicos en la Unión Europea.</p>
                     </div>
-                    <button onclick="openGuideModal('homologacion')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                    <button onclick="openGuideModal('homologacion')" style="background:none; border:none; color: #818cf8; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
 
-                <!-- Guía 4 -->
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div style="font-size: 2rem; margin-bottom: 1rem;">🇬🇧</div>
-                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Skilled Worker Visa (Reino Unido)</h3>
-                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Cómo conseguir patrocinio (Sponsor) de empresas británicas autorizadas por el Home Office del UK.</p>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Skilled Worker Visa (UK)</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Cómo conseguir patrocinio (Sponsor) de empresas británicas autorizadas por el Home Office.</p>
                     </div>
-                    <button onclick="openGuideModal('skilled_worker_uk')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                    <button onclick="openGuideModal('skilled_worker_uk')" style="background:none; border:none; color: #818cf8; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
             </div>
 
             <!-- Calculadora de Elegibilidad -->
-            <div style="background: #111827; color: white; border-radius: 24px; padding: 2.5rem; margin-bottom: 4rem;">
+            <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.12); border-radius: 28px; padding: 2.5rem;">
                 <div style="max-width: 650px; margin: 0 auto; text-align: center;">
-                    <span style="background: rgba(255,255,255,0.15); color: #a5b4fc; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem;">⚡ Evaluador Rápido</span>
-                    <h3 style="font-size: 1.75rem; font-weight: 800; margin-top: 0.5rem; margin-bottom: 1.5rem;">¿Calificas para una Visa de Trabajo Europea?</h3>
+                    <span style="background: rgba(99,102,241,0.2); color: #a5b4fc; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem;">⚡ Evaluador Rápido</span>
+                    <h3 style="font-size: 1.75rem; font-weight: 800; margin-top: 0.5rem; margin-bottom: 1.5rem; color:white;">¿Calificas para una Visa de Trabajo Europea?</h3>
 
                     <form onsubmit="calculateVisaEligibility(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
                         <div>
-                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Nivel Educativo Alcanzado</label>
-                            <select id="calc-edu" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Nivel Educativo Alcanzado</label>
+                            <select id="calc-edu" required class="search-select" style="width:100%;">
                                 <option value="3">🎓 Título Universitario / Grado</option>
                                 <option value="2">📜 Terciario / Formación Técnica</option>
                                 <option value="1">🏫 Bachillerato / Secundaria</option>
@@ -341,8 +394,8 @@
                         </div>
 
                         <div>
-                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Nivel de Idioma (Inglés o Alemán)</label>
-                            <select id="calc-lang" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Nivel de Idioma (Inglés o Alemán)</label>
+                            <select id="calc-lang" required class="search-select" style="width:100%;">
                                 <option value="3">🗣️ Avanzado / Fluido (B2/C1)</option>
                                 <option value="2">💬 Intermedio (B1)</option>
                                 <option value="1">🌱 Básico / Principiante (A1/A2)</option>
@@ -350,50 +403,29 @@
                         </div>
 
                         <div>
-                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Años de Experiencia Profesional</label>
-                            <select id="calc-exp" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Años de Experiencia Profesional</label>
+                            <select id="calc-exp" required class="search-select" style="width:100%;">
                                 <option value="3">⭐ Más de 5 años</option>
                                 <option value="2">🔹 Entre 2 y 5 años</option>
                                 <option value="1">🔸 Menos de 2 años</option>
                             </select>
                         </div>
 
-                        <button type="submit" style="background: #4f46e5; color: white; font-weight: 700; padding: 0.85rem; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; margin-top: 0.5rem; transition: 0.2s;">Evaluar mi Perfil Ahora →</button>
+                        <button type="submit" class="btn-search" style="margin-top: 0.5rem;">Evaluar mi Perfil Ahora →</button>
                     </form>
 
-                    <div id="calc-result" style="display:none; margin-top: 1.5rem; padding: 1.25rem; border-radius: 14px; background: #1f2937; border: 1px solid #374151; text-align: center;">
+                    <div id="calc-result" style="display:none; margin-top: 1.5rem; padding: 1.25rem; border-radius: 14px; background: rgba(30,41,59,0.8); border: 1px solid rgba(255,255,255,0.1); text-align: center;">
                         <!-- Results by JS -->
                     </div>
-                </div>
-            </div>
-
-            <!-- FAQ Accordion -->
-            <div>
-                <h3 style="font-size: 1.75rem; font-weight: 800; text-align: center; margin-bottom: 2rem;">Preguntas Frecuentes (FAQ)</h3>
-
-                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
-                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
-                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Puedo emigrar a Europa con mi grupo familiar?</summary>
-                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Sí. Las visados de trabajo cualificado en países como Alemania, España y Reino Unido permiten el derecho de reunificación familiar para tu cónyuge e hijos menores de edad.</p>
-                    </details>
-
-                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
-                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Las empresas pagan el costo del visado o pasajes?</summary>
-                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Muchas empresas que ofrecen vacantes con "Visa Sponsorship" incluyen paquetes de relocalización ("Relocation Package") que cubren pasajes aéreos, hospedaje inicial y asesoría legal para el visado.</p>
-                    </details>
-
-                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
-                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Es obligatorio saber el idioma local del país?</summary>
-                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Para roles de tecnología e ingeniería, el idioma inglés suele ser suficiente. Para salud y oficios donde hay atención al cliente o público, se suele solicitar un nivel intermedio (B1/B2) del idioma oficial del país.</p>
-                    </details>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 PuentesGlobales. Todos los derechos reservados.</p>
-        <p style="margin-top:0.5rem; font-size:0.85rem; color:#6b7280;">🤖 Este sitio está conectado a <a href="https://alexio.online" target="_blank" style="color:#4f46e5; font-weight:700; text-decoration:none;">alexio.online</a> y nos ayuda a darte mejor información en tiempo real.</p>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">&copy; 2026 PuentesGlobales. Todos los derechos reservados.</p>
+        <p style="margin-top:0.5rem; font-size:0.85rem; color:#64748b;">🤖 Conectado a <a href="https://alexio.online" target="_blank" style="color:#818cf8; font-weight:700; text-decoration:none;">alexio.online</a> para asistirte en tiempo real.</p>
     </footer>
 
     <script>
@@ -420,7 +452,6 @@
             const searchForm = document.querySelector('form.search-container');
             const searchInput = searchForm ? searchForm.querySelector('input[name="q"]').value.toLowerCase() : '';
             const countrySelect = searchForm ? searchForm.querySelector('select[name="country"]').value.toLowerCase() : '';
-            const profSelect = searchForm ? searchForm.querySelector('select[name="profession"]').value.toLowerCase() : '';
 
             const filtered = storedJobs.filter(job => {
                 const matchFlag = !activeFlagFilter || job.location.toLowerCase().includes(activeFlagFilter.toLowerCase());
@@ -431,9 +462,9 @@
 
             if (filtered.length === 0) {
                 container.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #f9fafb; border-radius: 16px; border: 1px solid #e5e7eb;">
-                        <p style="font-size: 1.2rem; font-weight: 600; color: #4b5563; margin-bottom: 0.5rem;">No se encontraron ofertas con estos filtros</p>
-                        <p style="color: #9ca3af; font-size: 0.95rem;">Prueba limpiando la búsqueda o usando la opción "🌟 Todas".</p>
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-card);">
+                        <p style="font-size: 1.2rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">No se encontraron ofertas con estos filtros</p>
+                        <p style="color: #64748b; font-size: 0.95rem;">Prueba limpiando la búsqueda o usando la opción "🌟 Todas".</p>
                     </div>
                 `;
                 return;
@@ -441,30 +472,29 @@
 
             filtered.slice(0, 18).forEach(job => {
                 const flagEmoji = getFlagEmoji(job.location);
-                const visaText = job.visa || (job.location.toLowerCase().includes('remoto') ? '🌐 Remoto 100%' : '🛂 Visa SponsorDisponible');
+                const visaText = job.visa || (job.location.toLowerCase().includes('remoto') ? '🌐 Remoto 100%' : 'Passport / Visa Sponsor');
                 const salaryText = job.salary || '💰 Competitivo EUR/USD';
 
                 const card = document.createElement('div');
-                card.style.cssText = "background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.03); transition: 0.2s ease;";
-                card.onmouseover = function() { this.style.transform = 'translateY(-3px)'; this.style.boxShadow = '0 10px 15px -3px rgba(0,0,0,0.08)'; };
-                card.onmouseout = function() { this.style.transform = 'none'; this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.03)'; };
+                card.className = "glass-card";
+                card.style.cssText += "display: flex; flex-direction: column; justify-content: space-between;";
 
                 card.innerHTML = `
                     <div>
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
-                            <span style="background: #f3f4f6; color: #374151; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${flagEmoji} ${job.location || 'Global'}</span>
-                            <span style="font-size: 0.75rem; color: #9ca3af;">${job.source || 'Empleo Directo'}</span>
+                            <span style="background: rgba(255,255,255,0.08); color: #cbd5e1; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${flagEmoji} ${job.location || 'Global'}</span>
+                            <span style="font-size: 0.75rem; color: #64748b;">${job.source || 'Empleo Directo'}</span>
                         </div>
-                        <h3 style="font-size: 1.15rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; line-height: 1.3;">${job.title}</h3>
-                        <p style="color: #4b5563; font-weight: 500; font-size: 0.95rem; margin-bottom: 1rem;">🏢 ${job.company}</p>
+                        <h3 style="font-size: 1.15rem; font-weight: 700; color: white; margin-bottom: 0.35rem; line-height: 1.3;">${job.title}</h3>
+                        <p style="color: var(--text-muted); font-weight: 500; font-size: 0.95rem; margin-bottom: 1rem;">🏢 ${job.company}</p>
                     </div>
 
                     <div>
                         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
-                            <span style="background: #eef2ff; color: #4945ff; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${visaText}</span>
-                            <span style="background: #ecfdf5; color: #059669; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${salaryText}</span>
+                            <span style="background: rgba(99,102,241,0.15); color: #a5b4fc; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px; border:1px solid rgba(99,102,241,0.25);">${visaText}</span>
+                            <span style="background: rgba(16,185,129,0.15); color: #6ee7b7; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px; border:1px solid rgba(16,185,129,0.25);">${salaryText}</span>
                         </div>
-                        <a href="${job.url}" onclick="applyToJob(event, '${encodeURIComponent(job.url)}')" target="_blank" style="display: block; text-align: center; background: #111827; color: white; font-weight: 600; padding: 0.65rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; transition: 0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#111827'">Postular / Ver Detalle →</a>
+                        <a href="${job.url}" onclick="applyToJob(event, '${encodeURIComponent(job.url)}')" target="_blank" style="display: block; text-align: center; background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-hover) 100%); color: white; font-weight: 700; padding: 0.75rem; border-radius: 12px; text-decoration: none; font-size: 0.9rem; transition: 0.2s;">Postular / Ver Detalle →</a>
                     </div>
                 `;
                 container.appendChild(card);
@@ -487,17 +517,17 @@
             activeFlagFilter = flagName;
             document.querySelectorAll('#flags-bar .flag-btn').forEach(btn => {
                 if (btn.innerText.includes(flagName) || (flagName === '' && btn.innerText.includes('Todas'))) {
-                    btn.style.background = '#111827';
+                    btn.style.background = 'var(--primary-accent)';
                     btn.style.color = 'white';
                 } else {
-                    btn.style.background = 'white';
-                    btn.style.color = '#374151';
+                    btn.style.background = 'rgba(15,23,42,0.8)';
+                    btn.style.color = 'var(--text-muted)';
                 }
             });
             renderPublicJobs();
         }
 
-        // --- Auth & Lead Capture Logic ---
+        // --- Auth & Session ---
         let pendingJobUrl = null;
 
         function checkUserSession() {
@@ -505,14 +535,14 @@
             const userArea = document.getElementById('nav-user-area');
             if (user && userArea) {
                 userArea.innerHTML = `
-                    <div style="display:flex; align-items:center; gap:0.75rem; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">
-                        <span style="font-weight:600;">👤 ${user.name}</span>
-                        <a href="#" onclick="logoutUser(event)" style="color:#ef4444; font-size:0.8rem; text-decoration:none; font-weight:600;">Salir</a>
+                    <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">
+                        <span style="font-weight:600; color:white;">👤 ${user.name}</span>
+                        <a href="#" onclick="logoutUser(event)" style="color:#f87171; font-size:0.8rem; text-decoration:none; font-weight:600;">Salir</a>
                     </div>
                 `;
             } else if (userArea) {
                 userArea.innerHTML = `
-                    <a href="#" onclick="openAuthModal(event)" style="text-decoration:none; color:inherit; font-weight:600; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
+                    <a href="#" onclick="openAuthModal(event)" style="text-decoration:none; color:white; font-weight:600; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:0.45rem 1rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
                 `;
             }
         }
@@ -550,10 +580,7 @@
                 registeredAt: new Date().toISOString()
             };
 
-            // Save user session
             localStorage.setItem('pg_user', JSON.stringify(candidate));
-
-            // Save lead to leads array for Admin
             let leads = JSON.parse(localStorage.getItem('pg_candidate_leads')) || [];
             leads.unshift(candidate);
             localStorage.setItem('pg_candidate_leads', JSON.stringify(leads));
@@ -564,7 +591,7 @@
             if (pendingJobUrl && pendingJobUrl !== '#') {
                 window.open(pendingJobUrl, '_blank');
             } else {
-                alert('¡Registro exitoso! Ya puedes postularte a todas las ofertas.');
+                alert('¡Registro exitoso! Ya tienes acceso completo.');
             }
         }
 
@@ -574,57 +601,53 @@
             checkUserSession();
         }
 
-        // --- Phase 4: Guide Modal & Visa Calculator ---
+        // --- Guide Modal & Calculator ---
         const guidesData = {
             chancenkarte: {
                 title: "🇩🇪 Visa Chancenkarte (Alemania)",
                 content: `
-                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>Tarjeta de Oportunidad (Chancenkarte)</strong> es el nuevo sistema de visado basado en puntos de Alemania para profesionales extranjeros de países no pertenecientes a la UE.</p>
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos clave:</h4>
+                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>Tarjeta de Oportunidad (Chancenkarte)</strong> es el nuevo sistema de visado basado en puntos de Alemania para profesionales extranjeros.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:white;">Requisitos clave:</h4>
                     <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
                         <li>Título técnico o universitario reconocido en tu país de origen.</li>
                         <li>Acumular mínimo 6 puntos (por idioma alemán A2/B1, inglés B2, experiencia o edad menor a 35 años).</li>
-                        <li>Demostrar fondos de subsistencia (aprox. €1,027/mes en cuenta bloqueada o contrato a tiempo parcial permido de 20hs/sem).</li>
+                        <li>Demostrar fondos de subsistencia (aprox. €1,027/mes o trabajo permitido de 20hs/sem).</li>
                     </ul>
-                    <p style="font-size:0.9rem; color:#6b7280;">Te permite residir legalmente en Alemania durante 12 meses para realizar entrevistas y trabajar hasta 20 horas semanales mientras buscas empleo a tiempo completo.</p>
                 `
             },
             nomada_espana: {
                 title: "🇪🇸 Ley de Nómadas Digitales (España)",
                 content: `
-                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>Visa de Teletrabajo Internacional de España</strong> permite a profesionales y freelancers de LATAM vivir en España mientras trabajan de forma remota.</p>
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos principales:</h4>
+                    <p style="margin-bottom:1rem; line-height:1.6;">Permite a profesionales y freelancers de LATAM vivir en España mientras trabajan de forma remota.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:white;">Requisitos principales:</h4>
                     <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
-                        <li>Trabajar en remoto para empresas fuera de España con contrato de al menos 3 meses de antigüedad.</li>
-                        <li>Ingresos mínimos equivalentes al 200% del Salario Mínimo Interprofesional español (aprox. €2,640/mes).</li>
-                        <li>Título universitario o al menos 3 años de experiencia acreditada en tu profesión.</li>
+                        <li>Trabajar en remoto para empresas fuera de España.</li>
+                        <li>Ingresos mínimos equivalentes al 200% del Salario Mínimo español (aprox. €2,640/mes).</li>
+                        <li>Beneficio fiscal: Tasa fija reducida de IRPF al 24% (Ley Beckham).</li>
                     </ul>
-                    <p style="font-size:0.9rem; color:#6b7280;">Beneficio fiscal: Acceso a la Régimen Especial Tributario (Ley Beckham) con tasa fija reducida de IRPF al 24%.</p>
                 `
             },
             homologacion: {
-                title: "📜 Homologación de Títulos en la Unión Europea",
+                title: "📜 Homologación de Títulos en la UE",
                 content: `
-                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>homologación</strong> es el reconocimiento oficial de tus estudios universitarios o técnicos expedidos en Latinoamérica para que tengan validez legal completa en Europa.</p>
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Pasos del proceso:</h4>
+                    <p style="margin-bottom:1rem; line-height:1.6;">El reconocimiento oficial de tus estudios universitarios o técnicos expedidos en Latinoamérica para validez legal completa en Europa.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:white;">Pasos:</h4>
                     <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
-                        <li>Apostilla de La Haya en tu título universitario, certificado de notas y plan de estudios.</li>
-                        <li>Traducción jurada al idioma oficial del país de destino (Español, Alemán, Francés, etc.).</li>
-                        <li>Presentación ante el Ministerio de Educación o Colegio Profesional correspondiente.</li>
+                        <li>Apostilla de La Haya en tu título y materias.</li>
+                        <li>Traducción jurada al idioma oficial del país de destino.</li>
+                        <li>Presentación ante el Ministerio de Educación correspondiente.</li>
                     </ul>
-                    <p style="font-size:0.9rem; color:#6b7280;">Es obligatoria para profesiones reguladas (Salud, Medicina, Enfermería, Arquitectura, Derecho y Docencia).</p>
                 `
             },
             skilled_worker_uk: {
                 title: "🇬🇧 Skilled Worker Visa (Reino Unido)",
                 content: `
-                    <p style="margin-bottom:1rem; line-height:1.6;">El visado de <strong>Trabajador Calificado del Reino Unido</strong> te permite residir y trabajar en una empresa patrocinadora (Sponsor) en Inglaterra, Escocia o Gales.</p>
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos del Home Office:</h4>
+                    <p style="margin-bottom:1rem; line-height:1.6;">Te permite residir y trabajar en una empresa patrocinadora (Sponsor) autorizada por el Home Office del Reino Unido.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:white;">Requisitos:</h4>
                     <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
-                        <li>Tener una oferta de trabajo confirmada de un empleador británico autorizado (Sponsor License).</li>
-                        <li>Certificado de patrocinio (CoS) emitido por la empresa.</li>
-                        <li>Demostrar nivel de inglés mínimo B1 (examen IELTS UKVI o título universitario dictado en inglés).</li>
-                        <li>Cumplir con el umbral salarial mínimo asignado a tu profesión según la lista de escasez (Shortage Occupation List).</li>
+                        <li>Oferta de trabajo confirmada de un empleador británico autorizado.</li>
+                        <li>Certificado de patrocinio (CoS).</li>
+                        <li>Nivel de inglés mínimo B1 acreditado.</li>
                     </ul>
                 `
             }
@@ -654,23 +677,22 @@
 
             if (score >= 8) {
                 resDiv.innerHTML = `
-                    <h4 style="color:#10b981; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">🌟 Elegibilidad Alta (Puntaje: ${score}/9)</h4>
-                    <p style="color:#d1d5db; font-size:0.95rem;">Tienes un perfil sólido para aplicar a la <strong>Chancenkarte (Alemania)</strong>, <strong>EU Blue Card</strong> o <strong>Visados de Trabajo directo con Sponsor</strong>.</p>
+                    <h4 style="color:#34d399; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">🌟 Elegibilidad Alta (Puntaje: ${score}/9)</h4>
+                    <p style="color:#cbd5e1; font-size:0.95rem;">Tienes un perfil excelente para aplicar a la <strong>Chancenkarte (Alemania)</strong>, <strong>EU Blue Card</strong> o <strong>Visas con Sponsor Directo</strong>.</p>
                 `;
             } else if (score >= 5) {
                 resDiv.innerHTML = `
-                    <h4 style="color:#f59e0b; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">⚡ Elegibilidad Media (Puntaje: ${score}/9)</h4>
-                    <p style="color:#d1d5db; font-size:0.95rem;">Calificas para <strong>Visas de Nómada Digital (España/Portugal)</strong> o empleos remotos. Te recomendamos elevar tu nivel de idioma (B2) para la Chancencarte.</p>
+                    <h4 style="color:#fbbf24; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">⚡ Elegibilidad Media (Puntaje: ${score}/9)</h4>
+                    <p style="color:#cbd5e1; font-size:0.95rem;">Calificas para <strong>Visas de Nómada Digital (España/Portugal)</strong> o empleos remotos. Te recomendamos subir tu nivel de idioma al B2 para Alemania.</p>
                 `;
             } else {
                 resDiv.innerHTML = `
                     <h4 style="color:#60a5fa; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">🌱 Perfil en Desarrollo (Puntaje: ${score}/9)</h4>
-                    <p style="color:#d1d5db; font-size:0.95rem;">Te sugerimos certificar un nivel intermedio de idioma (Inglés/Alemán) o sumar 2 años de experiencia técnica para desbloquear opciones de patrocinio.</p>
+                    <p style="color:#cbd5e1; font-size:0.95rem;">Te sugerimos certificar un nivel intermedio de idioma (Inglés/Alemán) o sumar 2 años de experiencia técnica.</p>
                 `;
             }
         }
 
-        // Attach listeners
         document.addEventListener('DOMContentLoaded', () => {
             checkUserSession();
             renderPublicJobs();
@@ -684,52 +706,48 @@
         });
     </script>
 
-    <!-- Modal Detalle de Guías Migratorias -->
-    <div id="guide-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
-        <div style="background:white; border-radius:24px; max-width:550px; width:100%; padding:2.25rem; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1); position:relative;">
-            <button onclick="closeGuideModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:#f3f4f6; border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:#6b7280;">✕</button>
-            
-            <h3 id="guide-modal-title" style="font-size:1.4rem; font-weight:800; color:#111827; margin-bottom:1rem;">Guía Migratoria</h3>
-            <div id="guide-modal-body" style="color:#374151; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
-                <!-- Content inserted by JS -->
-            </div>
-
+    <!-- Modal Detalle de Guías -->
+    <div id="guide-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.15); border-radius:24px; max-width:550px; width:100%; padding:2.25rem; position:relative; color:white;">
+            <button onclick="closeGuideModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:rgba(255,255,255,0.1); border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:white;">✕</button>
+            <h3 id="guide-modal-title" style="font-size:1.4rem; font-weight:800; color:white; margin-bottom:1rem;">Guía Migratoria</h3>
+            <div id="guide-modal-body" style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;"></div>
             <div style="text-align:right;">
-                <button onclick="closeGuideModal()" style="background:#111827; color:white; font-weight:700; padding:0.65rem 1.25rem; border:none; border-radius:10px; cursor:pointer;">Entendido / Cerrar</button>
+                <button onclick="closeGuideModal()" style="background:var(--primary-accent); color:white; font-weight:700; padding:0.65rem 1.25rem; border:none; border-radius:10px; cursor:pointer;">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal Login / Registro Postulantes -->
-    <div id="auth-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
-        <div style="background:white; border-radius:24px; max-width:440px; width:100%; padding:2rem; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1); position:relative;">
-            <button onclick="closeAuthModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:#f3f4f6; border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:#6b7280;">✕</button>
+    <!-- Modal Acceso / Registro Postulantes -->
+    <div id="auth-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.15); border-radius:24px; max-width:440px; width:100%; padding:2rem; position:relative; color:white;">
+            <button onclick="closeAuthModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:rgba(255,255,255,0.1); border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:white;">✕</button>
             
             <div style="text-align:center; margin-bottom:1.5rem;">
                 <div style="font-size:2.5rem; margin-bottom:0.5rem;">🚀</div>
-                <h3 style="font-size:1.5rem; font-weight:800; color:#111827; margin-bottom:0.25rem;">Acceso a Postulaciones</h3>
-                <p style="font-size:0.9rem; color:#6b7280;">Ingresa tus datos para ver la oferta directa y acceder a todas las herramientas de empleo en Europa.</p>
+                <h3 style="font-size:1.5rem; font-weight:800; color:white; margin-bottom:0.25rem;">Acceso a Postulaciones</h3>
+                <p style="font-size:0.9rem; color:#94a3b8;">Ingresa tus datos para ver la oferta directa y acceder a todas las herramientas.</p>
             </div>
 
             <form id="auth-form" onsubmit="submitCandidateData(event)" style="display:flex; flex-direction:column; gap:1rem;">
                 <div>
-                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Nombre Completo</label>
-                    <input type="text" id="cand-name" required placeholder="Ej. Juan Pérez" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                    <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:0.35rem;">Nombre Completo</label>
+                    <input type="text" id="cand-name" required placeholder="Ej. Juan Pérez" class="search-input" style="width:100%;">
                 </div>
 
                 <div>
-                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Correo Electrónico</label>
-                    <input type="email" id="cand-email" required placeholder="juan@ejemplo.com" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                    <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:0.35rem;">Correo Electrónico</label>
+                    <input type="email" id="cand-email" required placeholder="juan@ejemplo.com" class="search-input" style="width:100%;">
                 </div>
 
                 <div>
-                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">WhatsApp / Teléfono (con código de país)</label>
-                    <input type="tel" id="cand-phone" required placeholder="+54 9 11 1234 5678" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                    <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:0.35rem;">WhatsApp / Teléfono</label>
+                    <input type="tel" id="cand-phone" required placeholder="+54 9 11 1234 5678" class="search-input" style="width:100%;">
                 </div>
 
                 <div>
-                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Profesión / Área de Experiencia</label>
-                    <select id="cand-prof" required style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; background:white; box-sizing:border-box;">
+                    <label style="font-size:0.85rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:0.35rem;">Profesión / Área</label>
+                    <select id="cand-prof" required class="search-select" style="width:100%;">
                         <option value="">Selecciona tu área...</option>
                         <option value="Tecnología / IT">💻 Tecnología / IT</option>
                         <option value="Salud / Enfermería / Medicina">🏥 Salud / Enfermería / Medicina</option>
@@ -741,7 +759,7 @@
                     </select>
                 </div>
 
-                <button type="submit" style="background:#111827; color:white; font-weight:700; padding:0.85rem; border:none; border-radius:12px; cursor:pointer; font-size:1rem; margin-top:0.5rem; transition:0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#111827'">Continuar a la Oferta →</button>
+                <button type="submit" class="btn-search" style="margin-top:0.5rem;">Continuar a la Oferta →</button>
             </form>
         </div>
     </div>
