@@ -609,6 +609,12 @@
         <section id="ofertas" class="section-content">
             <div class="header">
                 <h1>Todas las Ofertas</h1>
+                <div>
+                    <input type="file" id="csv-file-input" accept=".csv" style="display:none;" onchange="handleCSVImport(event)">
+                    <button class="btn btn-outline" onclick="document.getElementById('csv-file-input').click()">
+                        <i data-lucide="upload"></i> Importar CSV
+                    </button>
+                </div>
             </div>
             
             <div class="table-container">
@@ -769,7 +775,9 @@
         const defaultAPIs = [
             { id: 'arbeitnow', name: 'Arbeitnow', url: 'https://www.arbeitnow.com/api/job-board-api', type: 'api' },
             { id: 'remoteok', name: 'RemoteOK', url: 'https://remoteok.com/api', type: 'api' },
-            { id: 'remotive', name: 'Remotive', url: 'https://remotive.com/api/remote-jobs', type: 'api' }
+            { id: 'remotive', name: 'Remotive', url: 'https://remotive.com/api/remote-jobs', type: 'api' },
+            { id: 'jobicy', name: 'Jobicy Remote', url: 'https://jobicy.com/api/v2/remote-jobs', type: 'api' },
+            { id: 'adzuna', name: 'Adzuna Jobs', url: 'https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=demo&app_key=demo', type: 'api' }
         ];
 
         const defaultRSS = [
@@ -976,6 +984,62 @@
             document.getElementById('btn-next-jobs').disabled = currentJobsPage === maxPage || maxPage === 0;
         }
 
+        // --- CSV Import ---
+        function handleCSVImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const content = e.target.result;
+                    const lines = content.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+                    if (lines.length < 2) {
+                        showToast('Error CSV', 'El archivo está vacío o no contiene ofertas validas.', 'error');
+                        return;
+                    }
+
+                    const headers = lines[0].toLowerCase().split(',').map(h => h.replace(/["']/g, '').trim());
+                    const titleIdx = headers.findIndex(h => h.includes('titulo') || h.includes('title') || h.includes('puesto'));
+                    const companyIdx = headers.findIndex(h => h.includes('empresa') || h.includes('company'));
+                    const locationIdx = headers.findIndex(h => h.includes('ubicacion') || h.includes('location') || h.includes('pais'));
+                    const urlIdx = headers.findIndex(h => h.includes('url') || h.includes('link'));
+
+                    const importedJobs = [];
+                    for (let i = 1; i < lines.length; i++) {
+                        const cols = lines[i].split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+                        const title = titleIdx !== -1 && cols[titleIdx] ? cols[titleIdx] : cols[0];
+                        const company = companyIdx !== -1 && cols[companyIdx] ? cols[companyIdx] : (cols[1] || 'Importado');
+                        const location = locationIdx !== -1 && cols[locationIdx] ? cols[locationIdx] : (cols[2] || 'Global');
+                        const url = urlIdx !== -1 && cols[urlIdx] ? cols[urlIdx] : (cols[3] || '#');
+
+                        if (title && title.length > 2) {
+                            importedJobs.push({
+                                title: title,
+                                company: company,
+                                location: location,
+                                url: url,
+                                source: 'CSV Upload',
+                                date: new Date().toISOString()
+                            });
+                        }
+                    }
+
+                    const newCount = mergeJobs(importedJobs);
+                    addHistoryRecord('Importación CSV', importedJobs.length, newCount, 'success');
+                    showToast('Importación Exitosa', `${importedJobs.length} procesadas, ${newCount} nuevas ofertas.`);
+                    renderJobsTable();
+                    if (document.getElementById('dashboard').classList.contains('active')) updateDashboard();
+
+                } catch (err) {
+                    console.error('Error importando CSV:', err);
+                    showToast('Error CSV', 'Fallo al procesar el archivo CSV.', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
         // --- APIs Section ---
         function renderAPICards() {
             const container = document.getElementById('api-cards-container');
@@ -1057,6 +1121,26 @@
                         source: api.name,
                         date: item.publication_date,
                         tags: item.tags
+                    }));
+                } else if (api.id === 'jobicy') {
+                    jobs = (data.jobs || []).map(item => ({
+                        title: item.jobTitle,
+                        company: item.companyName,
+                        location: item.jobGeo || item.jobLevel || 'Remoto',
+                        url: item.url,
+                        source: api.name,
+                        date: item.pubDate || new Date().toISOString(),
+                        tags: [item.jobCategory, item.jobType].filter(Boolean)
+                    }));
+                } else if (api.id === 'adzuna') {
+                    jobs = (data.results || []).map(item => ({
+                        title: item.title,
+                        company: item.company ? item.company.display_name : 'N/A',
+                        location: item.location ? item.location.display_name : 'Reino Unido / Europa',
+                        url: item.redirect_url,
+                        source: api.name,
+                        date: item.created || new Date().toISOString(),
+                        tags: [item.category ? item.category.label : null].filter(Boolean)
                     }));
                 }
 
