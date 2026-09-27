@@ -272,30 +272,114 @@
         <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem; text-transform: uppercase;">Recursos LATAM</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem;">Guías para Trabajar en Europa</h2>
-                <p style="color: #6b7280; font-size: 1.05rem;">Todo lo que necesitas saber antes de dar el salto profesional</p>
+                <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem;">Centro de Guías Migratorias</h2>
+                <p style="color: #6b7280; font-size: 1.05rem;">Información oficial y estructurada para profesionales de Latinoamérica</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🇩🇪</div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Visa Chancenkarte (Alemania)</h3>
-                    <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Conoce el nuevo sistema de tarjeta de oportunidad basado en puntos para buscar empleo presencial en Alemania.</p>
-                    <a href="#" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Leer Guía →</a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+                <!-- Guía 1 -->
+                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🇩🇪</div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Visa Chancenkarte (Alemania)</h3>
+                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Conoce el nuevo sistema de tarjeta de oportunidad basado en puntos para buscar empleo presencial en Alemania por 1 año.</p>
+                    </div>
+                    <button onclick="openGuideModal('chancenkarte')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
 
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🇪🇸</div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Ley de Startups y Nómadas (España)</h3>
-                    <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Requisitos para obtener la residencia de trabajo remoto en España con beneficios fiscales especiales.</p>
-                    <a href="#" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Leer Guía →</a>
+                <!-- Guía 2 -->
+                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🇪🇸</div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Ley de Nómadas Digitales (España)</h3>
+                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Requisitos para obtener la residencia de trabajo remoto en España con tipo impositivo reducido (Beckham Law).</p>
+                    </div>
+                    <button onclick="openGuideModal('nomada_espana')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
                 </div>
 
-                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">📜</div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Homologación de Títulos</h3>
-                    <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Paso a paso para hacer valer tus diplomas universitarios y certificados técnicos en la Unión Europea.</p>
-                    <a href="#" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Leer Guía →</a>
+                <!-- Guía 3 -->
+                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">📜</div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Homologación de Títulos</h3>
+                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Paso a paso para hacer valer tus diplomas universitarios y certificaciones profesionales en la Unión Europea.</p>
+                    </div>
+                    <button onclick="openGuideModal('homologacion')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                </div>
+
+                <!-- Guía 4 -->
+                <div style="background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🇬🇧</div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Skilled Worker Visa (Reino Unido)</h3>
+                        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Cómo conseguir patrocinio (Sponsor) de empresas británicas autorizadas por el Home Office del UK.</p>
+                    </div>
+                    <button onclick="openGuideModal('skilled_worker_uk')" style="background:none; border:none; color: #4f46e5; font-weight: 700; cursor:pointer; text-align:left; padding:0; font-size:0.95rem;">Leer Guía Completa →</button>
+                </div>
+            </div>
+
+            <!-- Calculadora de Elegibilidad -->
+            <div style="background: #111827; color: white; border-radius: 24px; padding: 2.5rem; margin-bottom: 4rem;">
+                <div style="max-width: 650px; margin: 0 auto; text-align: center;">
+                    <span style="background: rgba(255,255,255,0.15); color: #a5b4fc; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.85rem;">⚡ Evaluador Rápido</span>
+                    <h3 style="font-size: 1.75rem; font-weight: 800; margin-top: 0.5rem; margin-bottom: 1.5rem;">¿Calificas para una Visa de Trabajo Europea?</h3>
+
+                    <form onsubmit="calculateVisaEligibility(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                        <div>
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Nivel Educativo Alcanzado</label>
+                            <select id="calc-edu" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                                <option value="3">🎓 Título Universitario / Grado</option>
+                                <option value="2">📜 Terciario / Formación Técnica</option>
+                                <option value="1">🏫 Bachillerato / Secundaria</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Nivel de Idioma (Inglés o Alemán)</label>
+                            <select id="calc-lang" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                                <option value="3">🗣️ Avanzado / Fluido (B2/C1)</option>
+                                <option value="2">💬 Intermedio (B1)</option>
+                                <option value="1">🌱 Básico / Principiante (A1/A2)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="font-size: 0.85rem; font-weight: 600; color: #d1d5db; display: block; margin-bottom: 0.35rem;">Años de Experiencia Profesional</label>
+                            <select id="calc-exp" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #374151; background: #1f2937; color: white; font-family: inherit;">
+                                <option value="3">⭐ Más de 5 años</option>
+                                <option value="2">🔹 Entre 2 y 5 años</option>
+                                <option value="1">🔸 Menos de 2 años</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" style="background: #4f46e5; color: white; font-weight: 700; padding: 0.85rem; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; margin-top: 0.5rem; transition: 0.2s;">Evaluar mi Perfil Ahora →</button>
+                    </form>
+
+                    <div id="calc-result" style="display:none; margin-top: 1.5rem; padding: 1.25rem; border-radius: 14px; background: #1f2937; border: 1px solid #374151; text-align: center;">
+                        <!-- Results by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div>
+                <h3 style="font-size: 1.75rem; font-weight: 800; text-align: center; margin-bottom: 2rem;">Preguntas Frecuentes (FAQ)</h3>
+
+                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
+                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Puedo emigrar a Europa con mi grupo familiar?</summary>
+                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Sí. Las visados de trabajo cualificado en países como Alemania, España y Reino Unido permiten el derecho de reunificación familiar para tu cónyuge e hijos menores de edad.</p>
+                    </details>
+
+                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
+                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Las empresas pagan el costo del visado o pasajes?</summary>
+                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Muchas empresas que ofrecen vacantes con "Visa Sponsorship" incluyen paquetes de relocalización ("Relocation Package") que cubren pasajes aéreos, hospedaje inicial y asesoría legal para el visado.</p>
+                    </details>
+
+                    <details style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; cursor: pointer;">
+                        <summary style="font-weight: 700; font-size: 1.05rem; color: #111827;">¿Es obligatorio saber el idioma local del país?</summary>
+                        <p style="color: #4b5563; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.6;">Para roles de tecnología e ingeniería, el idioma inglés suele ser suficiente. Para salud y oficios donde hay atención al cliente o público, se suele solicitar un nivel intermedio (B1/B2) del idioma oficial del país.</p>
+                    </details>
                 </div>
             </div>
         </div>
@@ -483,6 +567,102 @@
             checkUserSession();
         }
 
+        // --- Phase 4: Guide Modal & Visa Calculator ---
+        const guidesData = {
+            chancenkarte: {
+                title: "🇩🇪 Visa Chancenkarte (Alemania)",
+                content: `
+                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>Tarjeta de Oportunidad (Chancenkarte)</strong> es el nuevo sistema de visado basado en puntos de Alemania para profesionales extranjeros de países no pertenecientes a la UE.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos clave:</h4>
+                    <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
+                        <li>Título técnico o universitario reconocido en tu país de origen.</li>
+                        <li>Acumular mínimo 6 puntos (por idioma alemán A2/B1, inglés B2, experiencia o edad menor a 35 años).</li>
+                        <li>Demostrar fondos de subsistencia (aprox. €1,027/mes en cuenta bloqueada o contrato a tiempo parcial permido de 20hs/sem).</li>
+                    </ul>
+                    <p style="font-size:0.9rem; color:#6b7280;">Te permite residir legalmente en Alemania durante 12 meses para realizar entrevistas y trabajar hasta 20 horas semanales mientras buscas empleo a tiempo completo.</p>
+                `
+            },
+            nomada_espana: {
+                title: "🇪🇸 Ley de Nómadas Digitales (España)",
+                content: `
+                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>Visa de Teletrabajo Internacional de España</strong> permite a profesionales y freelancers de LATAM vivir en España mientras trabajan de forma remota.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos principales:</h4>
+                    <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
+                        <li>Trabajar en remoto para empresas fuera de España con contrato de al menos 3 meses de antigüedad.</li>
+                        <li>Ingresos mínimos equivalentes al 200% del Salario Mínimo Interprofesional español (aprox. €2,640/mes).</li>
+                        <li>Título universitario o al menos 3 años de experiencia acreditada en tu profesión.</li>
+                    </ul>
+                    <p style="font-size:0.9rem; color:#6b7280;">Beneficio fiscal: Acceso a la Régimen Especial Tributario (Ley Beckham) con tasa fija reducida de IRPF al 24%.</p>
+                `
+            },
+            homologacion: {
+                title: "📜 Homologación de Títulos en la Unión Europea",
+                content: `
+                    <p style="margin-bottom:1rem; line-height:1.6;">La <strong>homologación</strong> es el reconocimiento oficial de tus estudios universitarios o técnicos expedidos en Latinoamérica para que tengan validez legal completa en Europa.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Pasos del proceso:</h4>
+                    <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
+                        <li>Apostilla de La Haya en tu título universitario, certificado de notas y plan de estudios.</li>
+                        <li>Traducción jurada al idioma oficial del país de destino (Español, Alemán, Francés, etc.).</li>
+                        <li>Presentación ante el Ministerio de Educación o Colegio Profesional correspondiente.</li>
+                    </ul>
+                    <p style="font-size:0.9rem; color:#6b7280;">Es obligatoria para profesiones reguladas (Salud, Medicina, Enfermería, Arquitectura, Derecho y Docencia).</p>
+                `
+            },
+            skilled_worker_uk: {
+                title: "🇬🇧 Skilled Worker Visa (Reino Unido)",
+                content: `
+                    <p style="margin-bottom:1rem; line-height:1.6;">El visado de <strong>Trabajador Calificado del Reino Unido</strong> te permite residir y trabajar en una empresa patrocinadora (Sponsor) en Inglaterra, Escocia o Gales.</p>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color:#111827;">Requisitos del Home Office:</h4>
+                    <ul style="padding-left:1.25rem; margin-bottom:1rem; line-height:1.6;">
+                        <li>Tener una oferta de trabajo confirmada de un empleador británico autorizado (Sponsor License).</li>
+                        <li>Certificado de patrocinio (CoS) emitido por la empresa.</li>
+                        <li>Demostrar nivel de inglés mínimo B1 (examen IELTS UKVI o título universitario dictado en inglés).</li>
+                        <li>Cumplir con el umbral salarial mínimo asignado a tu profesión según la lista de escasez (Shortage Occupation List).</li>
+                    </ul>
+                `
+            }
+        };
+
+        function openGuideModal(guideKey) {
+            const guide = guidesData[guideKey];
+            if (!guide) return;
+            document.getElementById('guide-modal-title').innerHTML = guide.title;
+            document.getElementById('guide-modal-body').innerHTML = guide.content;
+            document.getElementById('guide-modal').style.display = 'flex';
+        }
+
+        function closeGuideModal() {
+            document.getElementById('guide-modal').style.display = 'none';
+        }
+
+        function calculateVisaEligibility(event) {
+            event.preventDefault();
+            const edu = parseInt(document.getElementById('calc-edu').value);
+            const lang = parseInt(document.getElementById('calc-lang').value);
+            const exp = parseInt(document.getElementById('calc-exp').value);
+            const score = edu + lang + exp;
+
+            const resDiv = document.getElementById('calc-result');
+            resDiv.style.display = 'block';
+
+            if (score >= 8) {
+                resDiv.innerHTML = `
+                    <h4 style="color:#10b981; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">🌟 Elegibilidad Alta (Puntaje: ${score}/9)</h4>
+                    <p style="color:#d1d5db; font-size:0.95rem;">Tienes un perfil sólido para aplicar a la <strong>Chancenkarte (Alemania)</strong>, <strong>EU Blue Card</strong> o <strong>Visados de Trabajo directo con Sponsor</strong>.</p>
+                `;
+            } else if (score >= 5) {
+                resDiv.innerHTML = `
+                    <h4 style="color:#f59e0b; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">⚡ Elegibilidad Media (Puntaje: ${score}/9)</h4>
+                    <p style="color:#d1d5db; font-size:0.95rem;">Calificas para <strong>Visas de Nómada Digital (España/Portugal)</strong> o empleos remotos. Te recomendamos elevar tu nivel de idioma (B2) para la Chancencarte.</p>
+                `;
+            } else {
+                resDiv.innerHTML = `
+                    <h4 style="color:#60a5fa; font-weight:800; font-size:1.2rem; margin-bottom:0.25rem;">🌱 Perfil en Desarrollo (Puntaje: ${score}/9)</h4>
+                    <p style="color:#d1d5db; font-size:0.95rem;">Te sugerimos certificar un nivel intermedio de idioma (Inglés/Alemán) o sumar 2 años de experiencia técnica para desbloquear opciones de patrocinio.</p>
+                `;
+            }
+        }
+
         // Attach listeners
         document.addEventListener('DOMContentLoaded', () => {
             checkUserSession();
@@ -496,6 +676,22 @@
             }
         });
     </script>
+
+    <!-- Modal Detalle de Guías Migratorias -->
+    <div id="guide-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
+        <div style="background:white; border-radius:24px; max-width:550px; width:100%; padding:2.25rem; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1); position:relative;">
+            <button onclick="closeGuideModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:#f3f4f6; border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:#6b7280;">✕</button>
+            
+            <h3 id="guide-modal-title" style="font-size:1.4rem; font-weight:800; color:#111827; margin-bottom:1rem;">Guía Migratoria</h3>
+            <div id="guide-modal-body" style="color:#374151; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
+                <!-- Content inserted by JS -->
+            </div>
+
+            <div style="text-align:right;">
+                <button onclick="closeGuideModal()" style="background:#111827; color:white; font-weight:700; padding:0.65rem 1.25rem; border:none; border-radius:10px; cursor:pointer;">Entendido / Cerrar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Login / Registro Postulantes -->
     <div id="auth-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
