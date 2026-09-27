@@ -142,7 +142,9 @@
         <div class="logo">PuentesGlobales.</div>
         <div style="display:flex; gap:1.5rem; align-items:center;">
             <a href="admin.html" style="text-decoration:none; color:inherit; font-weight:600; opacity:0.8; transition:0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">⚙️ Admin</a>
-            <a href="#" style="text-decoration:none; color:inherit; font-weight:600">Acceso Postulantes</a>
+            <div id="nav-user-area">
+                <a href="#" onclick="openAuthModal()" style="text-decoration:none; color:inherit; font-weight:600; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
+            </div>
         </div>
     </nav>
 
@@ -371,7 +373,7 @@
                             <span style="background: #eef2ff; color: #4945ff; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${visaText}</span>
                             <span style="background: #ecfdf5; color: #059669; font-weight: 600; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">${salaryText}</span>
                         </div>
-                        <a href="${job.url}" target="_blank" style="display: block; text-align: center; background: #111827; color: white; font-weight: 600; padding: 0.65rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; transition: 0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#111827'">Postular / Ver Detalle →</a>
+                        <a href="${job.url}" onclick="applyToJob(event, '${encodeURIComponent(job.url)}')" target="_blank" style="display: block; text-align: center; background: #111827; color: white; font-weight: 600; padding: 0.65rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; transition: 0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#111827'">Postular / Ver Detalle →</a>
                     </div>
                 `;
                 container.appendChild(card);
@@ -404,8 +406,86 @@
             renderPublicJobs();
         }
 
+        // --- Auth & Lead Capture Logic ---
+        let pendingJobUrl = null;
+
+        function checkUserSession() {
+            const user = JSON.parse(localStorage.getItem('pg_user'));
+            const userArea = document.getElementById('nav-user-area');
+            if (user && userArea) {
+                userArea.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:0.75rem; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">
+                        <span style="font-weight:600;">👤 ${user.name}</span>
+                        <a href="#" onclick="logoutUser(event)" style="color:#ef4444; font-size:0.8rem; text-decoration:none; font-weight:600;">Salir</a>
+                    </div>
+                `;
+            } else if (userArea) {
+                userArea.innerHTML = `
+                    <a href="#" onclick="openAuthModal(event)" style="text-decoration:none; color:inherit; font-weight:600; background:#f3f4f6; padding:0.4rem 0.9rem; border-radius:100px; font-size:0.9rem;">🔑 Acceso Postulantes</a>
+                `;
+            }
+        }
+
+        function openAuthModal(e) {
+            if (e) e.preventDefault();
+            document.getElementById('auth-modal').style.display = 'flex';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').style.display = 'none';
+            pendingJobUrl = null;
+        }
+
+        function applyToJob(event, encodedUrl) {
+            const user = JSON.parse(localStorage.getItem('pg_user'));
+            const url = decodeURIComponent(encodedUrl);
+            if (!user) {
+                event.preventDefault();
+                pendingJobUrl = url;
+                openAuthModal();
+            }
+        }
+
+        function submitCandidateData(event) {
+            event.preventDefault();
+            const name = document.getElementById('cand-name').value;
+            const email = document.getElementById('cand-email').value;
+            const phone = document.getElementById('cand-phone').value;
+            const profession = document.getElementById('cand-prof').value;
+
+            const candidate = {
+                id: 'cand-' + Date.now(),
+                name, email, phone, profession,
+                registeredAt: new Date().toISOString()
+            };
+
+            // Save user session
+            localStorage.setItem('pg_user', JSON.stringify(candidate));
+
+            // Save lead to leads array for Admin
+            let leads = JSON.parse(localStorage.getItem('pg_candidate_leads')) || [];
+            leads.unshift(candidate);
+            localStorage.setItem('pg_candidate_leads', JSON.stringify(leads));
+
+            checkUserSession();
+            closeAuthModal();
+
+            if (pendingJobUrl && pendingJobUrl !== '#') {
+                window.open(pendingJobUrl, '_blank');
+            } else {
+                alert('¡Registro exitoso! Ya puedes postularte a todas las ofertas.');
+            }
+        }
+
+        function logoutUser(e) {
+            if (e) e.preventDefault();
+            localStorage.removeItem('pg_user');
+            checkUserSession();
+        }
+
         // Attach listeners
         document.addEventListener('DOMContentLoaded', () => {
+            checkUserSession();
             renderPublicJobs();
             const form = document.querySelector('form.search-container');
             if (form) {
@@ -416,6 +496,52 @@
             }
         });
     </script>
+
+    <!-- Modal Login / Registro Postulantes -->
+    <div id="auth-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:1rem;">
+        <div style="background:white; border-radius:24px; max-width:440px; width:100%; padding:2rem; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1); position:relative;">
+            <button onclick="closeAuthModal()" style="position:absolute; top:1.25rem; right:1.25rem; border:none; background:#f3f4f6; border-radius:50%; width:32px; height:32px; cursor:pointer; font-weight:bold; font-size:1rem; color:#6b7280;">✕</button>
+            
+            <div style="text-align:center; margin-bottom:1.5rem;">
+                <div style="font-size:2.5rem; margin-bottom:0.5rem;">🚀</div>
+                <h3 style="font-size:1.5rem; font-weight:800; color:#111827; margin-bottom:0.25rem;">Acceso a Postulaciones</h3>
+                <p style="font-size:0.9rem; color:#6b7280;">Ingresa tus datos para ver la oferta directa y acceder a todas las herramientas de empleo en Europa.</p>
+            </div>
+
+            <form id="auth-form" onsubmit="submitCandidateData(event)" style="display:flex; flex-direction:column; gap:1rem;">
+                <div>
+                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Nombre Completo</label>
+                    <input type="text" id="cand-name" required placeholder="Ej. Juan Pérez" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                </div>
+
+                <div>
+                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Correo Electrónico</label>
+                    <input type="email" id="cand-email" required placeholder="juan@ejemplo.com" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                </div>
+
+                <div>
+                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">WhatsApp / Teléfono (con código de país)</label>
+                    <input type="tel" id="cand-phone" required placeholder="+54 9 11 1234 5678" style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; box-sizing:border-box;">
+                </div>
+
+                <div>
+                    <label style="font-size:0.85rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem;">Profesión / Área de Experiencia</label>
+                    <select id="cand-prof" required style="width:100%; padding:0.75rem; border:1px solid #d1d5db; border-radius:10px; font-family:inherit; background:white; box-sizing:border-box;">
+                        <option value="">Selecciona tu área...</option>
+                        <option value="Tecnología / IT">💻 Tecnología / IT</option>
+                        <option value="Salud / Enfermería / Medicina">🏥 Salud / Enfermería / Medicina</option>
+                        <option value="Ingeniería / Construcción">⚙️ Ingeniería / Construcción</option>
+                        <option value="Transporte / Logística">🚚 Transporte / Logística</option>
+                        <option value="Administración / Finanzas">📊 Administración / Finanzas</option>
+                        <option value="Hostelería / Servicios">🍽️ Hostelería / Servicios</option>
+                        <option value="Otro">🌐 Otro</option>
+                    </select>
+                </div>
+
+                <button type="submit" style="background:#111827; color:white; font-weight:700; padding:0.85rem; border:none; border-radius:12px; cursor:pointer; font-size:1rem; margin-top:0.5rem; transition:0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#111827'">Continuar a la Oferta →</button>
+            </form>
+        </div>
+    </div>
 
     <!-- 🤖 Bot IA en tu Web — powered by ALEX IO -->
     <script
