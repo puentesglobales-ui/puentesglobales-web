@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: puentesglobales
+    runtime: node
+    repo: https://github.com/puentesglobales-ui/puentesglobales-web
+    branch: master
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
